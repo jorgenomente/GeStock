@@ -2,7 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Boxes, Truck, FileText, CheckSquare, Clock, DollarSign } from "lucide-react";
+import {
+  Home,
+  Boxes,
+  Truck,
+  FileText,
+  CheckSquare,
+  Clock,
+  DollarSign,
+  Tag as TagIcon, // ← import del ícono
+} from "lucide-react";
 
 const items = [
   { href: "/", label: "Dashboard", Icon: Home },
@@ -12,6 +21,7 @@ const items = [
   { href: "/tareas", label: "Tareas!!!", Icon: CheckSquare },
   { href: "/vencimientos", label: "Vtos", Icon: Clock },
   { href: "/precios", label: "Precios", Icon: DollarSign },
+  { href: "/labels", label: "Etiquetas", Icon: TagIcon }, // ← nuevo item
 ] as const;
 
 export default function BottomNav() {
@@ -30,7 +40,7 @@ export default function BottomNav() {
         pb-[env(safe-area-inset-bottom)]
       "
     >
-      <ul className="mx-auto max-w-md grid grid-cols-7">
+      <ul className="mx-auto max-w-md grid grid-cols-8">{/* ahora 8 items */}
         {items.map(({ href, label, Icon }) => {
           const active = pathname === href;
           const base =
@@ -43,7 +53,11 @@ export default function BottomNav() {
 
           return (
             <li key={href} className="flex">
-              <Link href={href} aria-current={active ? "page" : undefined} className={`${base} ${colors}`}>
+              <Link
+                href={href}
+                aria-current={active ? "page" : undefined}
+                className={`${base} ${colors}`}
+              >
                 <Icon aria-hidden="true" className={iconCls} />
                 <span className={labelCls}>{label}</span>
               </Link>
