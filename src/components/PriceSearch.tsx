@@ -199,28 +199,37 @@ export default function PriceSearch() {
           <div className="p-3 text-sm text-neutral-600">
             {filtered.length} productos (precio MÁXIMO por producto) — mostrando 50
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead className="bg-neutral-50">
-                <tr className="text-left">
-                  <th className="px-3 py-2">Nombre</th>
-                  <th className="px-3 py-2">Precio</th>
-                  <th className="px-3 py-2">Última actualización</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.slice(0, 50).map((r, i) => (
-                  <tr key={i} className="border-t border-neutral-200">
-                    <td className="px-3 py-2">{r.name || "—"}</td>
-                    <td className="px-3 py-2 whitespace-nowrap font-medium">
-                      {fmt(toNum(r.price))}
-                    </td>
-                    <td className="px-3 py-2 whitespace-nowrap">{r.lastUpdated || "—"}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+<div className="overflow-x-auto">
+  <table className="w-full text-sm">
+    {/* prettier-ignore */}
+    <colgroup><col className="w-[62%] sm:w-[60%]"/><col className="w-[20%] sm:w-[22%]"/><col className="w-[18%] sm:w-[18%]"/></colgroup>
+
+    <thead className="bg-neutral-50">
+      <tr className="text-left">
+        <th className="px-3 py-2">Nombre</th>
+        <th className="px-3 py-2 text-right">Precio</th>
+        <th className="px-3 py-2 text-right">Última actualización</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {filtered.slice(0, 50).map((r, i) => (
+        <tr key={i} className="border-t border-neutral-200">
+          <td className="px-3 py-2 pr-4 break-words leading-tight">
+            {r.name || "—"}
+          </td>
+          <td className="px-3 py-2 whitespace-nowrap text-right font-medium">
+            {fmt(toNum(r.price))}
+          </td>
+          <td className="px-3 py-2 whitespace-nowrap text-right">
+            {r.lastUpdated || "—"}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
           {filtered.length > 50 && (
             <div className="p-3 text-xs text-neutral-500">
               Mostrando 50 de {filtered.length}. Usa la búsqueda para afinar.
