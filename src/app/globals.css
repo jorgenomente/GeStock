@@ -1,0 +1,38 @@
+@import "tailwindcss";          /* v4: incluye preflight + utilities */
+
+/* =========================
+   Variables (modo claro fijo)
+   ========================= */
+:root {
+  color-scheme: light;          /* fuerza UI del navegador en claro */
+  --background: #fafafa;        /* similar a bg-neutral-50 */
+  --foreground: #171717;        /* similar a text-neutral-900 */
+}
+
+/* =========================
+   Estilos globales
+   ========================= */
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  @apply antialiased;
+}
+
+/* Tipografía y composición opcional (suave y consistente) */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Enfoque accesible por teclado */
+:focus-visible {
+  outline: 2px solid #3b82f6;   /* azul neutro accesible */
+  outline-offset: 2px;
+}
+
+/* Utilidad: ocultar scrollbars en contenedores horizontales */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
